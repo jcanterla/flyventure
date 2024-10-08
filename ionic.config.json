@@ -1,0 +1,7 @@
+{
+  "name": "$FlyVenture",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
