@@ -1,20 +1,83 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row>
+      <ion-col size = "3" style="display: flex; justify-content: flex-end;">
+        <img alt="logo" src="assets/logo.png" />
+      </ion-col>
+      <ion-col size = "9">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px; ">FlyVenture</a>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" id="main-content">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col size="6" style="display: flex; justify-content: center; align-items: center" (click)="navigateToItinerario()">
+        <ion-card style="background-color: #A2E2DF; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center;">
+          <img alt="itinerario" style="width: 100px; height: 100px" src="../../assets/itinerario.png" />
+        </ion-card>
+
+      </ion-col>
+      <ion-col size="6" style="display: flex; justify-content: center; align-items: center" (click)="navigateToUbicacion()">
+        <ion-card style="background-color: #A2E2DF; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center;">
+          <img alt="ubicacion" style="width: 100px; height: 100px" src="../../assets/ubicacion.png" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" style="display: flex; justify-content: center; align-items: center" (click)="navigateToNotas()">
+        <ion-card style="background-color: #A2E2DF; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center;">
+          <img alt="notas" style="width: 100px; height: 100px"  src="../../assets/notas.png" />
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" style="display: flex; justify-content: center; align-items: center" (click)="navigateToGastos()">
+        <ion-card style="background-color: #A2E2DF; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center;">
+          <img alt="pagar" style="width: 100px; height: 100px" src="../../assets/pagar.png" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" style="display: flex; justify-content: center; align-items: center" (click)="navigateToSugerencias()">
+        <ion-card style="background-color: #A2E2DF; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center;">
+          <img alt="recomendados" style="width: 100px; height: 100px" src="../../assets/recomendados.png" />
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" style="display: flex; justify-content: center; align-items: center">
+        <ion-card style="background-color: #A2E2DF; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center;" (click)="presentShareAlert()">
+          <img alt="compartir" style="width: 100px; height: 100px" src="../../assets/compartir.png" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToRetroceso()">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <ion-menu-button menu="first">
+          <img alt="ajustes" src="assets/ajustes.png" (click)="openMenu()">
+        </ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+
+
