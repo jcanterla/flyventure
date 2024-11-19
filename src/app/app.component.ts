@@ -1,34 +1,41 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from "@angular/router";
+import { Grupo } from "./models/grupo";
+import { GrupoService } from "./services/grupo-service.service";
+import { CommonModule } from "@angular/common";
 import {
-  IonApp, IonButtons,
-  IonCol, IonContent,
-  IonFooter,
-  IonHeader, IonItem, IonList, IonMenu,
-  IonRouterOutlet,
-  IonRow, IonTitle,
-  IonToolbar
+  IonApp, IonContent, IonHeader, IonItem, IonList, IonMenu,
+  IonRouterOutlet, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
-import {Router} from "@angular/router";
-import {Grupo} from "./models/grupo";
-import {GrupoService} from "./services/grupo-service.service";
-import {CommonModule} from "@angular/common";
-
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonRow, IonCol, IonFooter, IonTitle, IonContent, IonButtons, IonList, IonItem, IonMenu, CommonModule],
+  imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonMenu, CommonModule],
 })
 export class AppComponent implements OnInit {
-
   grupos: Grupo[] = [];
 
-  constructor(private router: Router, private GrupoService: GrupoService) {}
+  constructor(private router: Router, private grupoService: GrupoService) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.loadGrupos();
+    });
+  }
 
   ngOnInit() {
-    this.GrupoService.getGrupos().subscribe({
-      next: (data) => this.grupos = data,
+    this.loadGrupos();
+  }
+
+  loadGrupos() {
+    const usuarioId = 3;
+    this.grupoService.getGruposByUsuarioId(usuarioId).subscribe({
+      next: (data) => {
+        this.grupos = data;
+      },
       error: (error) => console.error('Error:', error),
       complete: () => console.log('Request complete')
     });
