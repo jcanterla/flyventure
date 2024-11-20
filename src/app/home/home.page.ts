@@ -1,27 +1,29 @@
-import { Component } from '@angular/core';
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonCard,
-  IonFooter, IonMenuButton
-} from '@ionic/angular/standalone';
-import {Router} from "@angular/router";
-import {AlertController, MenuController} from "@ionic/angular";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AlertController, MenuController, IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonFooter, IonMenuButton],
+  imports: [IonicModule]
 })
-export class HomePage {
-  constructor(private router: Router, private alertController: AlertController, private menu: MenuController) {}
+export class HomePage implements OnInit {
+  groupId: number | undefined;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private alertController: AlertController,
+    private menu: MenuController
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.groupId = +params['groupId'];
+    });
+  }
 
   async presentShareAlert() {
     const alert = await this.alertController.create({
@@ -53,8 +55,18 @@ export class HomePage {
     this.router.navigate(['/sugerencias']);
   }
 
+  navigateToParticipantes() {
+    if (this.groupId !== undefined) {
+      this.router.navigate([`/participantes/${this.groupId}`]);
+    }
+  }
+
   navigateToCentral() {
-    this.router.navigate(['/home']);
+    if (this.groupId !== undefined) {
+      this.router.navigate([`/home/${this.groupId}`]);
+    } else {
+      this.router.navigate(['/menu']);
+    }
   }
 
   navigateToRetroceso() {
@@ -62,7 +74,7 @@ export class HomePage {
   }
 
   openMenu() {
-    this.menu.enable(true, 'mainMenu'); // Habilita el menú con el ID 'mainMenu'
-    this.menu.open('mainMenu'); // Abre el menú con el ID 'mainMenu'
+    this.menu.enable(true, 'mainMenu');
+    this.menu.open('mainMenu');
   }
 }

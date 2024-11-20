@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: 'home/:groupId',
+    loadComponent: () => import('./home/home.page').then(m => m.HomePage),
   },
   {
     path: 'menu',
@@ -46,8 +46,16 @@ export const routes: Routes = [
     loadComponent: () => import('./chat/chat.component').then((m) => m.ChatComponent),
   },
   {
+    path: 'amigos',
+    loadComponent: () => import('./amigos/amigos.component').then((m) => m.AmigosComponent),
+  },
+  {
+    path: 'participantes/:groupId',
+    loadComponent: () => import('./participantes/participantes.component').then((m) => m.ParticipantesComponent),
+  },
+  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'menu',
     pathMatch: 'full',
   },
 

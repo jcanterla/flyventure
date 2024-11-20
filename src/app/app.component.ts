@@ -56,4 +56,12 @@ export class AppComponent implements OnInit {
   cerrarSesion() {
     this.router.navigate(['/registro']);
   }
+
+  navigateToHomeWithGroup(groupId: number | undefined) {
+    this.router.navigate([`/home/${groupId}`]);
+  }
+
+  navigateToAmigos() {
+    this.router.navigate(['/amigos']);
+  }
 }
