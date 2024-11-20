@@ -26,7 +26,7 @@ export const routes: Routes = [
     loadComponent: () => import('./ubicacion/ubicacion.component').then((m) => m.UbicacionComponent),
   },
   {
-    path: 'sugerencias',
+    path: 'sugerencias/:groupId',
     loadComponent: () => import('./sugerencias/sugerencias.component').then((m) => m.SugerenciasComponent),
   },
   {
@@ -57,6 +57,5 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'menu',
     pathMatch: 'full',
-  },
-
+  }
 ];

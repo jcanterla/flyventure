@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
   }
 
   navigateToSugerencias() {
-    this.router.navigate(['/sugerencias']);
+    this.router.navigate([`/sugerencias/${this.groupId}`]);
   }
 
   navigateToParticipantes() {

@@ -1,11 +1,5 @@
 import {Usuario} from "./usuario";
-
-export interface Sugerencia {
-  id: number;
-  imagen: string;
-  lugar: string;
-  ubicacion: string;
-}
+import {Sugerencia} from "./sugerencia";
 
 export interface Grupo {
   id?: number;
