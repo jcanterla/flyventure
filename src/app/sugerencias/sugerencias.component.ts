@@ -57,27 +57,47 @@ export class SugerenciasComponent implements OnInit {
   }
 
   calculateVotes() {
-    const currentUserId = 3; // Fixed user ID
-    this.sugerencias.forEach(actividad => {
-      if (actividad.sugerencia.id !== undefined) {
-        const positiveVotes = actividad.votos.filter(v => v.voto === true).length;
-        const negativeVotes = actividad.votos.filter(v => v.voto === false).length;
-        this.positiveVotesCount[actividad.sugerencia.id] = positiveVotes;
-        this.negativeVotesCount[actividad.sugerencia.id] = negativeVotes;
-        const userVote = actividad.votos.find(v => v.usuarioId === currentUserId);
-        this.userHasVoted[actividad.sugerencia.id] = userVote ? userVote.voto : null;
-
-        console.log(`Sugerencia ID: ${actividad.sugerencia.id}, Positive Votes: ${positiveVotes}, Negative Votes: ${negativeVotes}, User Has Voted: ${this.userHasVoted[actividad.sugerencia.id]}`);
-      }
+    this.sugerencias.forEach(sugerencia => {
+      this.positiveVotesCount[sugerencia.sugerencia.id!] = sugerencia.votos.filter(v => v.voto).length;
+      this.negativeVotesCount[sugerencia.sugerencia.id!] = sugerencia.votos.filter(v => !v.voto).length;
+      const currentUserId = 3; // Fixed user ID
+      const userVote = sugerencia.votos.find(v => v.usuarioId === currentUserId);
+      this.userHasVoted[sugerencia.sugerencia.id!] = userVote ? userVote.voto : null;
     });
   }
 
   votar(sugerencia: ActividadVotoDTO, positivo: boolean) {
     const currentUserId = 3; // Fixed user ID
-    // If the user hasn't voted yet, add a new vote
+    const userVote = sugerencia.votos.find(v => v.usuarioId === currentUserId);
+
+    if (userVote) {
+      // If the user has already voted and the new vote is the same
+      if (userVote.voto === positivo) {
+        // Decrement the vote counts
+        if (positivo) {
+          this.positiveVotesCount[sugerencia.sugerencia.id!]--;
+        } else {
+          this.negativeVotesCount[sugerencia.sugerencia.id!]--;
+        }
+      } else {
+        // If the vote is different, update the vote counts
+        if (userVote.voto) {
+          this.positiveVotesCount[sugerencia.sugerencia.id!]--;
+        } else {
+          this.negativeVotesCount[sugerencia.sugerencia.id!]--;
+        }
+      }
+    }
+
     this.grupoService.votarActividad(sugerencia.sugerencia.id!, currentUserId, positivo).subscribe(
       (nuevoVoto) => {
-        sugerencia.votos.push({ usuarioId: currentUserId, voto: positivo });
+        if (userVote) {
+          // Update the existing vote
+          userVote.voto = positivo;
+        } else {
+          // Add a new vote
+          sugerencia.votos.push({ usuarioId: currentUserId, voto: positivo });
+        }
         this.userHasVoted[sugerencia.sugerencia.id!] = positivo;
         this.calculateVotes();
       },
@@ -112,6 +132,7 @@ export class SugerenciasComponent implements OnInit {
       }
     );
   }
+
 
   navigateToCentral() {
     if (this.groupId !== undefined) {
