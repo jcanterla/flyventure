@@ -54,13 +54,5 @@ export class GrupoService {
     return this.http.post<Voto>(url, {});
   }
 
-  eliminarVotoActividad(sugerenciaId: number, usuarioId: number): Observable<void> {
-    const url = `${this.apiUrl}/sugerencias/votar?sugerenciaId=${sugerenciaId}&usuarioId=${usuarioId}`;
-    return this.http.delete<void>(url);
-  }
 
-  getUserVote(sugerenciaId: number, usuarioId: number): Observable<Voto | null> {
-    const url = `${this.apiUrl}/sugerencias/voto?sugerenciaId=${sugerenciaId}&usuarioId=${usuarioId}`;
-    return this.http.get<Voto | null>(url);
-  }
 }
