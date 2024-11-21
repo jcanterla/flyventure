@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-left: 0px; margin-right: 10px">
+      <ion-col size="3" style="display: flex; justify-content: center; align-items: center;">
+        <img alt="logo" src="assets/participantes.png" />
+      </ion-col>
+      <ion-col size="9" style="display: flex; justify-content: center; align-items: center;">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px;">Participantes</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+  <div style="display: flex; justify-content: center; align-items: flex-start; height: 100%; margin-top: 30px">
+    <div style="position: relative; width: 90%; max-width: 400px">
+      <img alt="logo" src="assets/logo.png" style="width: 70px; height: 70px; position: absolute; top: -5px; left: -10px; z-index: 2">
+
+      <ion-card style="overflow: visible; background-color: #A2E2DF; border-radius: 10px; padding: 20px; height: 500px;">
+        <ion-grid style="margin-top: 50px">
+          <div style="position: absolute; top: 0; bottom: 0; left: 10.8%; width: 6px; background-color: #A6473F; z-index: -1; margin-top: 70px; margin-bottom: 20px"></div>
+          <ion-row *ngFor="let user of users">
+            <ion-col>
+              <ion-text style="color: #A6473F; font-weight: bold; margin-left: 30px;">{{ user.nombre }}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-button color="success" style="width: 150px; margin-left: 15px;" [id]="'anyadirP' + groupId">Añadir</ion-button>
+      <ion-button color="danger" style="width: 150px; margin-left: 40px" [id]="'eliminarP' + groupId">Remover</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-modal #addUserModal [trigger]="'anyadirP' + groupId">
+  <ng-template>
+    <ion-list>
+      <ion-label class="titulo">Añadir Participante</ion-label>
+      <ion-input [(ngModel)]="newUserId" label="Usuario ID:" placeholder="Introduce usuario Id" class="escribir"></ion-input>
+    </ion-list>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+            <ion-button (click)="addUserModal.dismiss()">
+              <img alt="cancel" src="assets/cancel.png">
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+            <ion-button (click)="anyadirUsuarioGrupo(); addUserModal.dismiss()">
+              <img alt="ok" src="assets/ok.png">
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ng-template>
+</ion-modal>
+
+<ion-modal #removeUserModal [trigger]="'eliminarP' + groupId">
+  <ng-template>
+    <ion-list>
+      <ion-label class="titulo">Eliminar Participante</ion-label>
+      <ion-input [(ngModel)]="removeUserId" label="Usuario ID:" placeholder="Introduce usuario Id" class="escribir"></ion-input>
+    </ion-list>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+            <ion-button (click)="removeUserModal.dismiss()">
+              <img alt="cancel" src="assets/cancel.png">
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+            <ion-button (click)="eliminarUsuarioGrupo(); removeUserModal.dismiss()">
+              <img alt="ok" src="assets/ok.png">
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ng-template>
+</ion-modal>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToRetroceso()">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <ion-menu-button menu="first">
+          <img alt="ajustes" src="assets/ajustes.png" (click)="openMenu()">
+        </ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

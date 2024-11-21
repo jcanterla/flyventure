@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-left: 30px; margin-right: 60px">
+      <ion-col size="3" style="display: flex; justify-content: center; align-items: center; ">
+        <img alt="logo" src="assets/pagar.png" />
+      </ion-col>
+      <ion-col size="9" style="display: flex; justify-content: center; align-items: center;">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px;">Gastos</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+  <div style="display: flex; justify-content: center; align-items: flex-start; height: 100%; margin-top: 30px">
+    <div style="position: relative; width: 90%; max-width: 400px">
+      <img alt="logo" src="assets/logo.png" style="width: 70px; height: 70px; position: absolute; top: -5px; left: -10px;z-index: 2">
+      <img id="anyadir" alt="logo" src="assets/anyadir.png" style="width: 50px; height: 50px; position: absolute; top: 30px; right: 30px;z-index: 2">
+
+      <ion-modal #modal trigger="anyadir">
+        <ng-template>
+          <ion-list>
+            <ion-label class="titulo">Añadir Gasto</ion-label>
+            <ion-label class="opcion">Elige usuario</ion-label>
+            <ion-select placeholder="Selecciona una opción" class="elecciones">
+              <ion-select-option value="vuelo">Juan Carlos</ion-select-option>
+              <ion-select-option value="duracion">Esteban</ion-select-option>
+              <ion-select-option value="distancia">Álvaro</ion-select-option>
+              <ion-select-option value="hotel">Javier</ion-select-option>
+            </ion-select>
+            <ion-input type="number" placeholder="Introduce una cantidad" class="escribir"></ion-input>
+          </ion-list>
+          <ion-toolbar>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button class="button-1" (click)="modal.dismiss()">
+                    Deber
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button class="button-2" (click)="modal.dismiss()">
+                    Pagar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-toolbar>
+        </ng-template>
+      </ion-modal>
+
+      <ion-card style="overflow: visible; background-color: #A2E2DF; border-radius: 10px; padding: 20px; height: 570px;">
+        <ion-grid>
+          <ion-row style="margin-top: 20px; border-bottom: 4px solid #A6473F; ">
+            <ion-col size="4">
+              <img alt="usuario1" src="assets/usuario1.png" style="width: 70px; height: 70px">
+            </ion-col>
+            <ion-col size="6">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px">Juan Carlos</ion-card-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px; color: green"> 20€</ion-card-title>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 10px; border-bottom: 4px solid #A6473F; ">
+            <ion-col size="4">
+              <img alt="usuario1" src="assets/usuario4.png" style="width: 70px; height: 70px">
+            </ion-col>
+            <ion-col size="6">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px">Esteban</ion-card-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px; color: red"> 15€</ion-card-title>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 10px; border-bottom: 4px solid #A6473F; ">
+            <ion-col size="4">
+              <img alt="usuario1" src="assets/usuario3.png" style="width: 70px; height: 70px">
+            </ion-col>
+            <ion-col size="6">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px">Álvaro</ion-card-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px; color: black"> 0€</ion-card-title>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 10px; border-bottom: 4px solid #A6473F; ">
+            <ion-col size="4">
+              <img alt="usuario1" src="assets/usuario2.png" style="width: 70px; height: 70px">
+            </ion-col>
+            <ion-col size="6">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px">Javier</ion-card-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px; margin-top: 25px; color: red"> 4.3€</ion-card-title>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 50px; border-bottom: 4px solid #A6473F; "></ion-row>
+          <ion-row style=" border-bottom: 4px solid #A6473F;">
+            <ion-col size="6" style="border-right: 4px solid #A6473F; padding: 10px; text-align: center;">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px;"> Debes </ion-card-title>
+            </ion-col>
+            <ion-col size="6" style="padding: 10px; text-align: center;">
+              <ion-card-title style="color: #A6473F; font-weight: bold; font-size: 15px;"> Te deben</ion-card-title>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" style="border-right: 4px solid #A6473F; padding: 10px; text-align: center;">
+              <ion-card-title style="color: red; font-weight: bold; font-size: 15px;"> 19.3€ </ion-card-title>
+            </ion-col>
+            <ion-col size="6" style="padding: 10px; text-align: center;">
+              <ion-card-title style="color: green; font-weight: bold; font-size: 15px;"> 20€</ion-card-title>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToRetroceso()">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <ion-menu-button menu="first">
+          <img alt="ajustes" src="assets/ajustes.png" (click)="openMenu()">
+        </ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-left: 0px; margin-right: 10px">
+      <ion-col size="3" style="display: flex; justify-content: center; align-items: center;">
+        <img alt="logo" src="assets/itinerario.png" />
+      </ion-col>
+      <ion-col size="9" style="display: flex; justify-content: center; align-items: center;">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px;">Amigos</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+  <div style="display: flex; justify-content: center; align-items: flex-start; height: 100%; margin-top: 30px">
+    <div style="position: relative; width: 90%; max-width: 400px">
+      <img alt="logo" src="assets/logo.png" style="width: 70px; height: 70px; position: absolute; top: -5px; left: -10px; z-index: 2">
+      <img id="anyadir" alt="logo" src="assets/anyadir.png" style="width: 40px; height: 40px; position: absolute; top: 35px; right: 30px; z-index: 2">
+
+      <ion-card style="overflow: visible; background-color: #A2E2DF; border-radius: 10px; padding: 20px; height: 500px;">
+        <ion-grid>
+          <div style="position: absolute; top: 0; bottom: 0; left: 10.8%; width: 6px; background-color: #A6473F; z-index: -1; margin-top: 70px; margin-bottom: 20px"></div>
+          <ion-row style="margin-top: 50px">
+            <ion-col>
+              <ion-row style="margin-left: 30px; margin-bottom: 10px" *ngFor="let amigo of amigos">
+                <ion-text style="color: #A6473F; font-weight: bold;">{{amigo.nombre}}</ion-text>
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToRetroceso()">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <ion-menu-button menu="first">
+          <img alt="ajustes" src="assets/ajustes.png" (click)="openMenu()">
+        </ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

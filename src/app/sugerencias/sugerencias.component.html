@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-left: 0px; margin-right: 10px">
+      <ion-col size="3" style="display: flex; justify-content: center; align-items: center;">
+        <img alt="logo" src="assets/recomendados.png" />
+      </ion-col>
+      <ion-col size="9" style="display: flex; justify-content: center; align-items: center;">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px;">Sugerencias</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="display: flex; justify-content: center; align-items: flex-start; height: 100%; margin-top: 30px">
+    <div style="position: relative; width: 90%; max-width: 400px">
+      <img alt="logo" src="assets/logo.png" style="width: 70px; height: 70px; position: absolute; top: -5px; left: -10px; z-index: 2">
+      <img id="anyadirS{{groupId}}" alt="anyadir" src="assets/anyadir.png" style="width: 50px; height: 50px; position: absolute; top: 40px; right: 40px; z-index: 2">
+
+      <ion-card style="overflow: visible; background-color: #A2E2DF; border-radius: 10px; padding: 20px; height: 500px;">
+        <ion-grid style="margin-top: 50px">
+          <ion-row *ngFor="let actividad of sugerencias">
+            <ion-col size="4" style="margin-top: 10px">
+              <img style="width: 85px; height: 85px; border-radius: 10%" [src]="actividad.sugerencia.imagen" alt="Imagen de {{actividad.sugerencia.lugar}}">
+            </ion-col>
+            <ion-col size="8" style="padding-top: 0px">
+              <h5 style="color: #A6473F; font-weight: bold">{{actividad.sugerencia.lugar}}</h5>
+              <p style="color: #A6473F; font-weight: bold">{{actividad.sugerencia.ubicacion}}</p>
+              <div *ngIf="actividad.sugerencia.id !== undefined">
+                <button (click)="votar(actividad, true)">👍 {{positiveVotesCount[actividad.sugerencia.id]}}</button>
+                <button (click)="votar(actividad, false)">👎 {{negativeVotesCount[actividad.sugerencia.id]}}</button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
+
+<ion-modal #addSuggestionModal [trigger]="'anyadirS' + groupId">
+  <ng-template>
+    <ion-list>
+      <ion-label class="titulo">Add Suggestion</ion-label>
+      <ion-input [(ngModel)]="newSuggestionImageUrl" label="URL imagen:" placeholder="Ej: http//:imagen.jpg" class="escribir"></ion-input>
+      <ion-input [(ngModel)]="newSuggestionPlace" label="Lugar:" placeholder="Ej: Castillo" class="escribir"></ion-input>
+      <ion-input [(ngModel)]="newSuggestionLocation" label="Ubicación:" placeholder="Ej: Aracena" class="escribir"></ion-input>
+    </ion-list>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+            <ion-button (click)="addSuggestionModal.dismiss()">
+              <img alt="cancel" src="assets/cancel.png">
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+            <ion-button (click)="addSuggestion(); addSuggestionModal.dismiss()">
+              <img alt="ok" src="assets/ok.png">
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ng-template>
+</ion-modal>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToRetroceso()">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <ion-menu-button menu="first">
+          <img alt="ajustes" src="assets/ajustes.png" (click)="openMenu()">
+        </ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

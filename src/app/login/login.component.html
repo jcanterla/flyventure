@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row>
+      <ion-col size = "3" style="display: flex; justify-content: flex-end;">
+        <img alt="logo" src="assets/logo.png" />
+      </ion-col>
+      <ion-col size = "9">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px; ">FlyVenture</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 50px ;margin-bottom: 30px">
+      <ion-card style="border: 5px solid #89746E ;width: 340px; display: flex; justify-content: center; align-items: center;">
+        <ion-list style="display: flex; flex-direction: column; align-items: center;">
+          <img alt="usuario" style="width: 100px; height: 100px; margin-bottom: 30px" src="../../assets/usuario.png" />
+          <ion-item style="width: 100%;">
+            <ion-input label="Usuario" placeholder="Usuario"></ion-input>
+          </ion-item>
+          <ion-item style="width: 100%;">
+            <ion-input label="Contraseña" placeholder="Contraseña"></ion-input>
+          </ion-item>
+          <div style="display: flex; align-items: center; margin-top: 25px; margin-bottom: 30px">
+            <img alt="google" src="assets/google.png" style="margin-right: 10px; height: 40px; width: 40px">
+            <a style="background: #0082F1; color: white; padding-top: 10px; padding-bottom: 10px; padding-left: 40px; padding-right: 40px">Continuar con Google</a>
+          </div>
+          <img alt="acceder" src="assets/acceder.png" style="margin-bottom: 30px" (click)="navigateToMenu()">
+          <div style="margin-bottom: 20px">
+            <a style="color: black">¿No tienes cuenta? </a><a (click)="navigateToRetroceso()"> Registrate aquí </a>
+          </div>
+          <div style="margin-bottom: 20px">
+            <a style="color: black">¿Has olvidado de la contraseña? </a><a id="anyadir4"> Click aquí </a>
+          </div>
+        </ion-list>
+      </ion-card>
+
+      <ion-modal #modal trigger="anyadir4">
+        <ng-template>
+          <ion-list>
+            <ion-label class="titulo">Recuperar contraseña</ion-label>
+            <ion-input label="Correo electrónico:" placeholder="correo" class="escribir"></ion-input>
+          </ion-list>
+          <ion-toolbar>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button (click)="modal.dismiss()">
+                    <img alt="cancel" src="assets/cancel.png">
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button (click)="modal.dismiss()">
+                    <img alt="ok" src="assets/ok.png">
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-toolbar>
+        </ng-template>
+      </ion-modal>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <img alt="retroceso" src="assets/ajustes.png">
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+

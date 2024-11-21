@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row>
+      <ion-col size="3" style="display: flex; justify-content: flex-end;">
+        <img alt="logo" src="assets/logo.png" />
+      </ion-col>
+      <ion-col size="9">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px;">FlyVenture</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 50px; margin-bottom: 30px">
+      <ion-card style="background-color: #A2E2DF; width: 340px; height: 160px; display: flex; justify-content: center; align-items: center;">
+        <ion-card-content id="anyadir2" style="color: #A6473F; font-weight: bold; font-size: 35px;">
+          Crear grupo
+        </ion-card-content>
+      </ion-card>
+
+      <ion-modal #modal trigger="anyadir2">
+        <ng-template>
+          <ion-list>
+            <ion-label class="titulo">Crear grupo</ion-label>
+            <ion-input [(ngModel)]="nombreGrupo" label="Nombre grupo:" placeholder="Escribe aqui" class="escribir"></ion-input>
+          </ion-list>
+          <ion-toolbar>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button (click)="modal.dismiss()">
+                    <img alt="cancel" src="assets/cancel.png">
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button (click)="crearGrupo(); modal.dismiss()">
+                    <img alt="ok" src="assets/ok.png">
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-toolbar>
+        </ng-template>
+      </ion-modal>
+    </ion-row>
+
+    <ion-row style="display: flex; justify-content: center; align-items: center;">
+      <ion-card style="background-color: #A2E2DF; width: 340px; height: 160px; display: flex; justify-content: center; align-items: center;">
+        <ion-card-content id="unirse" style="color: #A6473F; font-weight: bold; font-size: 35px;">
+          Unirse a grupo
+        </ion-card-content>
+      </ion-card>
+
+      <ion-modal #modal trigger="unirse">
+        <ng-template>
+          <ion-list>
+            <ion-label class="titulo">Unirse grupo</ion-label>
+            <ion-input [(ngModel)]="grupoId" label="ID del grupo:" placeholder="Escribe aqui" class="escribir"></ion-input>
+          </ion-list>
+          <ion-toolbar>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button (click)="modal.dismiss()">
+                    <img alt="cancel" src="assets/cancel.png">
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6" style="display: flex; justify-content: center; align-items: center;">
+                  <ion-button (click)="unirseGrupo(); modal.dismiss()">
+                    <img alt="ok" src="assets/ok.png">
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-toolbar>
+        </ng-template>
+      </ion-modal>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToRetroceso()">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <ion-menu-button menu="first">
+          <img alt="ajustes" src="assets/ajustes.png" (click)="openMenu()">
+        </ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

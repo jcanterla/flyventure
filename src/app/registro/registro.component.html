@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 50px; padding-bottom: 30px">
+    <ion-row>
+      <ion-col size = "3" style="display: flex; justify-content: flex-end;">
+        <img alt="logo" src="assets/logo.png" />
+      </ion-col>
+      <ion-col size = "9">
+        <a style="color: #A6473F; font-weight: bold; font-size: 50px; ">FlyVenture</a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 50px ;margin-bottom: 30px">
+      <ion-card style="border: 5px solid #89746E ;width: 340px; display: flex; justify-content: center; align-items: center;">
+        <ion-list style="display: flex; flex-direction: column; align-items: center;">
+          <img alt="usuario" style="width: 110px; height: 100px; margin-bottom: 30px; padding-left: 10px" src="../../assets/usuario.png" />
+          <ion-item style="width: 100%;">
+            <ion-input label="Usuario" placeholder="Usuario" style="text-align: left;"></ion-input>
+          </ion-item>
+          <ion-item style="width: 100%;">
+            <ion-input label="Email" placeholder="Email" style="text-align: left;"></ion-input>
+          </ion-item>
+          <ion-item style="width: 100%;">
+            <ion-input label="Contraseña" type="password" placeholder="Contraseña"></ion-input>
+          </ion-item>
+          <ion-item style="width: 100%;">
+            <ion-label>Confirmar<br> Contraseña</ion-label>
+            <ion-input  type="password" placeholder="Confirmar Contraseña"></ion-input>
+          </ion-item>
+          <img alt="acceder" src="assets/acceder.png" style="margin-bottom: 30px; margin-top: 30px" (click)="navigateToLogin()">
+        </ion-list>
+      </ion-card>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <img alt="retroceso" style="width: 50px; height: 50px;" src="assets/chat.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center" (click)="navigateToCentral()">
+        <img alt="retroceso" src="assets/central.png">
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; align-items: center">
+        <img alt="retroceso" src="assets/ajustes.png">
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
